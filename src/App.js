@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, createContext } from "react";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import Header from "./components/Header";
+import ToDoList from "./components/ToDoList";
+import Card from "./components/Card";
 
-function App() {
+export const AppContext = createContext();
+
+const App = () => {
+  const [task, setTask] = useState([]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppContext.Provider value={{ task, setTask }}>
+      <Card>
+        <h4 className="text-center my-3 pb-3">To Do App</h4>
+        <Header />
+        <ToDoList />
+      </Card>
+    </AppContext.Provider>
   );
-}
+};
 
 export default App;
